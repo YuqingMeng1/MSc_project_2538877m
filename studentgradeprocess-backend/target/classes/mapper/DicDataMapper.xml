@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mengyuqing.modules.mapper.DicDataMapper">
+
+    <select id="selectDicValueByCodeNotNull" resultType="java.lang.String">
+        SELECT dict_value FROM dic_data WHERE code like #{code}
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mengyuqing.modules.mapper.GradeMapper">
+
+    <insert id="insertList" parameterType="java.util.List" keyProperty="id" useGeneratedKeys="true">
+        insert into grade
+        (student_info_id, subject_name, source, create_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.studentInfoId, jdbcType=BIGINT},
+            #{item.subjectName, jdbcType=VARCHAR},
+            #{item.source, jdbcType=DECIMAL},
+            #{item.createTime}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectPage" resultType="com.mengyuqing.modules.dto.GradeDto">
+        SELECT
+            g.*,
+            dd.remark gradeName,
+            sslevel.credit credit
+        FROM
+            grade g
+        LEFT JOIN student_subject_level sslevel ON sslevel.grade_id = g.id
+        LEFT JOIN dic_data dd ON sslevel.dic_data_code = dd.`code`
+        ${ew.customSqlSegment}
+        ORDER BY g.subject_name
+    </select>
+
+</mapper>

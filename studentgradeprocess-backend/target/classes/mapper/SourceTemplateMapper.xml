@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mengyuqing.modules.mapper.SourceTemplateMapper">
+
+    <select id="selectRule" resultType="com.mengyuqing.modules.entity.SourceTemplate">
+        SELECT rule FROM source_template order by id DESC limit 1
+    </select>
+</mapper>

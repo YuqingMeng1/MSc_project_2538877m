@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mengyuqing.modules.mapper.UserMapper">
+
+    <select id="selectByUser" resultType="com.mengyuqing.modules.entity.User">
+        SELECT * FROM user WHERE user_name = #{userName} AND pass_word = #{password} ORDER BY create_time DESC limit 1
+    </select>
+
+    <select id="selectUserByStudentId" resultType="com.mengyuqing.modules.entity.User">
+        SELECT * FROM user WHERE user_name = #{userName} ORDER BY create_time DESC limit 1
+    </select>
+</mapper>
