@@ -18,24 +18,24 @@ public class Grade {
 	private Long id;
 
     /**
-     * 关联学生信息表 related with studentIof table
+     *  related with studentIof table
      */
      private Long studentInfoId;
     /**
-     * 关联字典表Code  related with dicData table
+     * Code  related with dicData table
      */
      private String subjectName;
     /**
-     * 分数 related with source table
+     *  related with source table
      */
      private BigDecimal source;
     /**
-     * 创建时间
+     *
      */
      @TableField(fill = FieldFill.INSERT)
      private Date createTime;
     /**
-     * 更新时间
+     *
      */
      private Date updateTime;
 
