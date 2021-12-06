@@ -216,7 +216,7 @@ public class GradeServiceImpl implements GradeService {
 
         BigDecimal overallGrade = gradeList.stream()
                 .map(i -> i.getSource() == null ? BigDecimal.ZERO : i.getSource())
-                .reduce(BigDecimal.ZERO, BigDecimal::add).divide(total, 2, BigDecimal.ROUND_HALF_UP);
+                .reduce(BigDecimal.ZERO, BigDecimal::add).divide(total, 2, BigDecimal.ROUND_DOWN);
 
         // 获取总成绩的级别
         ScoreRuleDto scoreRuleDto = this.calculationLevel(overallGrade.setScale(0, BigDecimal.ROUND_HALF_UP).toString(), rule, false);
