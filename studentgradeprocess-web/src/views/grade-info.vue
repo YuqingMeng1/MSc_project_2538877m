@@ -53,7 +53,7 @@ export default {
         id: '',
         name: ''
       },
-      // 设置属性
+      // set attribute
       mixinViewModuleOptions: {
         createdIsNeed: true,
         getDataListURL: 'grade/page',
@@ -117,13 +117,12 @@ export default {
         this.dataListLoading = false
       })
     },
-    // 分页, 每页条数
+    // paging each page limit
     pageSizeChangeHandle (val) {
       this.page = 1
       this.limit = val
       this.query()
     },
-    // 分页, 当前页
     pageCurrentChangeHandle (val) {
       this.page = val
       this.query()

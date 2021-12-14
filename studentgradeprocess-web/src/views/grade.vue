@@ -86,7 +86,7 @@ export default {
     }
   },
   methods: {
-    // 获取数据列表
+    // get data list
     query () {
       this.dataListLoading = true
       this.$ajax.get(
@@ -114,13 +114,12 @@ export default {
         this.dataListLoading = false
       })
     },
-    // 分页, 每页条数
+    // paging
     pageSizeChangeHandle (val) {
       this.page = 1
       this.limit = val
       this.query()
     },
-    // 分页, 当前页
     pageCurrentChangeHandle (val) {
       this.page = val
       this.query()
@@ -132,34 +131,34 @@ export default {
     seeHandle (id) {
       this.$router.push({name: 'studentInfo', query: {id: id}})
     },
-    // 导入文件失败后回调
+    // if import false
     onError () {
-      this.importDataText = '导入数据'
+      this.importDataText = 'import data'
       this.importDataIcon = 'el-icon-upload2'
       this.importDisabled = false
       this.query()
       this.$message.error('import error！')
     },
-    // 导入文件成功后回调
+    // if import success
     onSuccess () {
-      // 成功后文本修改为原来的导入数据
-      this.importDataText = '导入数据'
-      // 图标修改
+      // After success, change the text to the original imported data
+      this.importDataText = 'import data'
+      // change icon
       this.importDataIcon = 'el-icon-upload2'
-      // 将上传组件改为允许使用
+      // Change the upload component to allow
       this.importDisabled = false
-      // 调用刷新数据的方法
+      // use updata data method
       this.query()
-      // message 弹出消息
+      // message popup
       this.$message.success('import success！')
     },
-    // 上传文件调用
+    // use upload method
     beforeUpload () {
-      // 将文本修改为正在导入
-      this.importDataText = '正在导入'
-      // 修改其图标
+      // change the text
+      this.importDataText = 'Being Imported'
+      // change icon
       this.importDataIcon = 'el-icon-loading'
-      // 将其上传组件暂时禁用
+      // make upload component be forbidden
       this.importDisabled = true
     }
   }

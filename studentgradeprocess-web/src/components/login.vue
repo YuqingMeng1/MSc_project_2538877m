@@ -3,7 +3,7 @@
     <div>
       <el-card shadow="never" class="aui-card--fill" style="width:550px;">
         <div>
-          <H1>STUDENT GRADE PROCESS</H1>
+          <H1>STUDENT GRADE PROCESSING</H1>
           <el-form ref="form" label-width="80px">
             <el-form-item label="Username：">
               <el-input v-model="dataForm.username" placeholder="please enter username"></el-input>
