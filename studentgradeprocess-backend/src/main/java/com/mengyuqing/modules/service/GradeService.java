@@ -11,7 +11,7 @@ import java.util.Map;
  * @date 2021/10/25 10:25
  */
 public interface GradeService {
-    void importExcel(List<String> grade, String fileName);
+    void importCSV(List<String> grade, String fileName);
 
     PageData<GradeDto> page(Map<String, Object> params);
 

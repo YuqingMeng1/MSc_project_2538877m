@@ -31,14 +31,14 @@ public class GradeController {
     }
 
     @PostMapping("/import")
-    public Result importExcel(@RequestParam("file") MultipartFile file) {
+    public Result importCSV(@RequestParam("file") MultipartFile file) {
         /**
          * import CSV files
          */
         try {
             List<String> grade = CommonMethod.importCsv(file.getInputStream());
             new Thread(()->{
-                gradeService.importExcel(grade, file.getOriginalFilename());
+                gradeService.importCSV(grade, file.getOriginalFilename());
             }).start();
         } catch (IOException e) {
             e.printStackTrace();

@@ -5,36 +5,36 @@
         <div>
           <H1>STUDENT GRADE PROCESS</H1>
           <el-form ref="form" label-width="80px">
-            <el-form-item label="username：">
+            <el-form-item label="Username：">
               <el-input v-model="dataForm.username" placeholder="please enter username"></el-input>
             </el-form-item>
-            <el-form-item label="password：">
+            <el-form-item label="Password：">
               <el-input v-model="dataForm.password" type="password" placeholder="please enter password"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button @click="sign()">sign in</el-button>
-              <el-button @click="updatePassWordVisible()">update password</el-button>
+              <el-button @click="sign()">Log in</el-button>
+              <el-button @click="updatePassWordVisible()">Update password</el-button>
             </el-form-item>
           </el-form>
         </div>
       </el-card>
     </div>
-    <el-dialog :visible.sync="seeVisible" :title="'detail'" :close-on-click-modal="false" :close-on-press-escape="false">
+    <el-dialog :visible.sync="seeVisible" :title="'Change Password'" :close-on-click-modal="false" :close-on-press-escape="false">
       <el-card>
         <el-form :model="dataForm" ref="dataForm" :label-width="'200px'">
-          <el-form-item label="username">
+          <el-form-item label="Username">
             <el-input v-model="updatePasswordMap.userName"></el-input>
           </el-form-item>
-          <el-form-item label="old password">
+          <el-form-item label="Old password">
             <el-input v-model="updatePasswordMap.oldPassWord"></el-input>
           </el-form-item>
-          <el-form-item label="newpassword">
+          <el-form-item label="New password">
             <el-input v-model="updatePasswordMap.newPassWord"></el-input>
           </el-form-item>
         </el-form>
       </el-card>
       <template slot="footer">
-        <el-button @click="seeVisible = false">center</el-button>
+        <el-button @click="seeVisible = false">cancel</el-button>
         <el-button type="primary" @click="updatePassWord()">commit</el-button>
       </template>
     </el-dialog>

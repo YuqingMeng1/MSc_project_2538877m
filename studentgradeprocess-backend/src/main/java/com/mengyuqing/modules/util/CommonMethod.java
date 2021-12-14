@@ -22,13 +22,12 @@ public class CommonMethod {
 
 
     /**
-     * 获取分页对象
-     * @param params      分页查询参数
-     * @param defaultOrderField  默认排序字段
-     * @param isAsc              排序方式
+     * get cut page object
+     * @param params
+     * @param defaultOrderField
+     * @param isAsc
      */
     public static IPage getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
-        //分页参数
         long curPage = 1;
         long limit = 10;
 
@@ -39,17 +38,17 @@ public class CommonMethod {
             limit = Long.parseLong((String)params.get("limit"));
         }
 
-        //分页对象
+        //cut page object
         Page page = new Page<>(curPage, limit);
 
-        //分页参数
+        //cut page parameter
         params.put("page", page);
 
-        //排序字段
+
         String orderField = (String)params.get("orderField");
         String order = (String)params.get("order");
 
-        //前端字段排序
+        //front-page field sort
         if(com.baomidou.mybatisplus.core.toolkit.StringUtils.isNotBlank(orderField) && com.baomidou.mybatisplus.core.toolkit.StringUtils.isNotBlank(order)){
             if("asc".equalsIgnoreCase(order)) {
                 return page.addOrder(OrderItem.asc(orderField));
@@ -57,13 +56,12 @@ public class CommonMethod {
                 return page.addOrder(OrderItem.desc(orderField));
             }
         }
-
-        //没有排序字段，则不排序
+        //without field ,not sort
         if(com.baomidou.mybatisplus.core.toolkit.StringUtils.isBlank(defaultOrderField)){
             return page;
         }
 
-        //默认排序
+        //default sort
         if(isAsc) {
             page.addOrder(OrderItem.asc(defaultOrderField));
         }else {
@@ -74,8 +72,8 @@ public class CommonMethod {
     }
 
     /**
-     * 导入
-     * @param inputStream csv file(路径+文件)
+     * import
+     * @param inputStream csv file(address+file)
      * @return
      */
     public static List<String> importCsv(InputStream inputStream) {
@@ -103,7 +101,7 @@ public class CommonMethod {
     }
 
     /**
-     * 字段转换成对象属性 例如：user_name to userName
+     * field change to object (user_name to userName)
      *
      * @param field
      * @return
@@ -130,9 +128,9 @@ public class CommonMethod {
     }
 
     /**
-     * get 的反射
-     * @param tClass 类名
-     * @param fieldName 反射的属性名
+     * get reflection
+     * @param tClass
+     * @param fieldName filed name of reflection
      * @param <T>
      * @return
      */
@@ -148,7 +146,7 @@ public class CommonMethod {
     }
 
     /**
-     * 调用反射之前的操作
+     *
      * @param tClass
      * @param column
      * @param <T>
@@ -162,7 +160,7 @@ public class CommonMethod {
 
 
     /**
-     * 根据科目名称获取code
+     * get code by subject name
      * @param subjectName
      * @return
      */

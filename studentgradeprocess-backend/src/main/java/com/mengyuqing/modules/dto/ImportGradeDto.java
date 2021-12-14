@@ -39,5 +39,6 @@ public class ImportGradeDto {
 
     private String wblJournal;
 
-    private String fileName;
+    private String
+            fileName;
 }

@@ -26,8 +26,8 @@
       </el-form>
     </div>
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" :header-cell-style="{background:'#f5f7fa',color:'#7f8ea7'}">
-        <el-table-column fixed prop="lastName" label="Last Name" header-align="center" align="center" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="firstName" label="First Name" header-align="center" align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column fixed prop="lastName" label="First Name" header-align="center" align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="firstName" label="Last Name" header-align="center" align="center" show-overflow-tooltip></el-table-column>
         <el-table-column prop="studentId" label="Student ID" header-align="center" align="center"></el-table-column>
         <el-table-column label="Detail" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">

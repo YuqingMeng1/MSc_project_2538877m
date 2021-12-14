@@ -66,17 +66,17 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void importExcel(List<String> importExcelData, String fileName) {
+    public void importCSV(List<String> importCSVData, String fileName) {
 
-        // 存放成绩的List
+        // List--store grad
         List<Grade> gradeList = new ArrayList<>();
-        // 存放级别的List
+        // List-store level
         List<StudentSubjectLevel> studentSubjectLevelList = new ArrayList<>();
 
-        // 获取规则
+        // get the rule
         SourceTemplate sourceTemplate = sourceTemplateMapper.selectRule();
-        // 获取表格数据
-        Map<String, Object> map = this.convertData(importExcelData);
+        // get table data
+        Map<String, Object> map = this.convertData(importCSVData);
         List<String> subjectNameList = (List<String>) map.get("titleList");
         List<String> proportionList = (List<String>) map.get("proportion");
         List<String> importGradeList = (List<String>) map.get("grade");
@@ -110,7 +110,7 @@ public class GradeServiceImpl implements GradeService {
             userMapper.insert(user);
 
 
-            // 向存放成绩的List加数据
+            // add data on the list of storing grade
             this.addGradeList(gradeList, subjectNameList, sourceTemplate, grades, studentInfo, proportionList, bigDecimalList);
 
             if (!CollectionUtils.isEmpty(bigDecimalList)) {
@@ -118,10 +118,10 @@ public class GradeServiceImpl implements GradeService {
                 total = total.subtract(sum);
             }
 
-            // 更新用户总成绩
+            //  update overall grade
             this.updateOverallGrade(gradeList, studentInfo, sourceTemplate.getRule(), total);
 
-            // 科目等级加记录
+            // add subject level on the list
             this.addStudentSubjectLevelList(gradeList, studentSubjectLevelList);
 
             gradeList.clear();
@@ -131,24 +131,24 @@ public class GradeServiceImpl implements GradeService {
 
     private void addGradeList(List<Grade> gradeList, List<String> subjectNameList, SourceTemplate sourceTemplate, String[] grades, StudentInfo studentInfo, List<String> proportionList, List<BigDecimal> bigDecimalList) {
 
-        // 控制角标
+
         int foot = 0;
-        // 控制成绩的角标
+        // control the grade foot title
         int gradeFoot = 4;
         for (String subjectName : subjectNameList) {
 
-            // 获取当前科目占比
+            // get subject credit
             String proportion = proportionList.get(foot);
 
             String source = grades[gradeFoot];
 
-            // 判断是否可以转为数字
+            // 判断是否可以转为数字 justify whether can be changed to number
             boolean type= StringUtils.isNumeric(source);
 
             if (!type) {
-                // 处理成绩为AB 和 NM
+                // if the grade is "AB" OR"NM"
                 if ("AB".equals(source) || "NM".equals(source)) {
-                    // 获取当前科目的code
+                    // get subject level code
                     Grade grade = getGrade(studentInfo, subjectName, source, proportion);
                     gradeList.add(grade);
                     foot ++;
@@ -161,11 +161,11 @@ public class GradeServiceImpl implements GradeService {
                 continue;
             }
 
-            // 获取当前科目在模板中的信息
+            // get template message
             ScoreRuleDto scoreRuleDto = this.calculationLevel(source, sourceTemplate.getRule(), true);
-            // 获取级别
+            // get level
             String level = scoreRuleDto.getGrade();
-            // 分数乘权重
+            // credit*grade
             BigDecimal actualScore = (new BigDecimal(Integer.valueOf(proportion).toString()).multiply(BigDecimal.valueOf(scoreRuleDto.getRate())))
                     .setScale(2, RoundingMode.HALF_UP);
 
@@ -218,7 +218,7 @@ public class GradeServiceImpl implements GradeService {
                 .map(i -> i.getSource() == null ? BigDecimal.ZERO : i.getSource())
                 .reduce(BigDecimal.ZERO, BigDecimal::add).divide(total, 2, BigDecimal.ROUND_DOWN);
 
-        // 获取总成绩的级别
+        // get overall grade level
         ScoreRuleDto scoreRuleDto = this.calculationLevel(overallGrade.setScale(0, BigDecimal.ROUND_HALF_UP).toString(), rule, false);
 
         StudentInfo overallGradeInfo = StudentInfo.builder()
@@ -230,17 +230,17 @@ public class GradeServiceImpl implements GradeService {
     }
 
     /**
-     * 计算级别 true计算分数的等级 false计算总分的等级
-     * @param source 分数
-     * @param rule 规则
+     * calculate grade :true-calculate the level of each subject grade   false-calculate the level of overall grade
+     * @param source
+     * @param rule
      * @return
      */
     private ScoreRuleDto calculationLevel(String source, String rule, Boolean flag) {
         ScoreRuleDto ruleDto = new ScoreRuleDto();
-        // 排序
+        //sort
         List<ScoreRuleDto> scoreRuleDtoList = sortRule(rule);
         for (ScoreRuleDto scoreRuleDto : scoreRuleDtoList) {
-            // 计算分数的等级
+            // calculate the level of each subject grade
             if (flag) {
                 if (scoreRuleDto.getOpenScore() <= Long.parseLong(source)) {
                     ruleDto.setGrade(scoreRuleDto.getGrade());
@@ -249,7 +249,7 @@ public class GradeServiceImpl implements GradeService {
                 }
 
             } else {
-                // 计算总分的等级
+                // calculate the level of overall grade
                 if (scoreRuleDto.getRate() == Long.parseLong(source) || scoreRuleDto.getRate() < Long.parseLong(source)) {
                     ruleDto.setGrade(scoreRuleDto.getGrade());
                     ruleDto.setRate(scoreRuleDto.getRate());
@@ -263,28 +263,28 @@ public class GradeServiceImpl implements GradeService {
 
     private List<ScoreRuleDto> sortRule(String rule) {
         List<ScoreRuleDto> scoreRuleDtoList = JSONArray.parseArray(rule, ScoreRuleDto.class);
-        //根据分数排序
+        //sort by grade
         scoreRuleDtoList.sort((ScoreRuleDto o1, ScoreRuleDto o2) -> o2.getOpenScore().compareTo(o1.getOpenScore()));
 
         return scoreRuleDtoList;
     }
 
 
-    // 处理导入的数据
+    // processing import data
     private Map<String, Object> convertData(List<String> grade) {
         Map<String, Object> map = new HashMap<>();
-        // 标题的list
+        //subject title list
         List<String> titleList = new ArrayList<>();
-        // 比例的list
+        // credit list
         List<String> proportion = new ArrayList<>();
 
         if (!CollectionUtils.isEmpty(grade)) {
-            // 获取除学生信息外科目的信息
+            // 获取除学生信息外科目的信息 get the information besides subject title
             String titleStrings = grade.get(0);
             String[] titles = titleStrings.split(",");
             this.getSubjectOtherInfo(titles, titleList);
 
-            // 获取除学生信息外科目占比的信息
+            // 获取除学生信息外科目占比的信息 get the information besides credit
             String proportionStrings = grade.get(1);
             String[] proportions = proportionStrings.split(",");
             this.getSubjectOtherInfo(proportions, proportion);

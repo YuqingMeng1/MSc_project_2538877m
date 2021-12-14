@@ -23,11 +23,11 @@ public class Result<T> implements Serializable {
      */
     private int code = 0;
     /**
-     * 消息内容
+     * message
      */
     private String msg = "success";
     /**
-     * 响应数据
+     *response data
      */
     private T data;
 
@@ -42,13 +42,13 @@ public class Result<T> implements Serializable {
 
     public Result<T> error() {
         this.code = INTERNAL_SERVER_ERROR;
-        this.msg = "服务器内部异常";
+        this.msg = "Internal Server exception";
         return this;
     }
 
     public Result<T> error(int code) {
         this.code = code;
-        this.msg = "服务器内部异常";
+        this.msg = "Internal Server exception";
         return this;
     }
 
