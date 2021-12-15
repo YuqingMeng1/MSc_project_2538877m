@@ -6,20 +6,20 @@
           <H1>STUDENT GRADE PROCESSING</H1>
           <el-form ref="form" label-width="80px">
             <el-form-item label="Username：">
-              <el-input v-model="dataForm.username" placeholder="please enter username"></el-input>
+              <el-input v-model="dataForm.username" placeholder="please enter your username"></el-input>
             </el-form-item>
             <el-form-item label="Password：">
-              <el-input v-model="dataForm.password" type="password" placeholder="please enter password"></el-input>
+              <el-input v-model="dataForm.password" type="password" placeholder="please enter your password"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button @click="sign()">Log in</el-button>
+              <el-button @click="sign()">Login</el-button>
               <el-button @click="updatePassWordVisible()">Update password</el-button>
             </el-form-item>
           </el-form>
         </div>
       </el-card>
     </div>
-    <el-dialog :visible.sync="seeVisible" :title="'Change Password'" :close-on-click-modal="false" :close-on-press-escape="false">
+    <el-dialog :visible.sync="seeVisible" :title="'Update Password'" :close-on-click-modal="false" :close-on-press-escape="false">
       <el-card>
         <el-form :model="dataForm" ref="dataForm" :label-width="'200px'">
           <el-form-item label="Username">
@@ -34,8 +34,8 @@
         </el-form>
       </el-card>
       <template slot="footer">
-        <el-button @click="seeVisible = false">cancel</el-button>
-        <el-button type="primary" @click="updatePassWord()">commit</el-button>
+        <el-button @click="seeVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="updatePassWord()">Commit</el-button>
       </template>
     </el-dialog>
   </div>

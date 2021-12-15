@@ -5,13 +5,13 @@
     <div class="left">
       <el-form :inline="true" :model="dataForm" label-width="160px" label-position="right">
         <el-form-item>
-          <el-input v-model="dataForm.lastName" placeholder="Last Name" clearable></el-input>
+          <el-input v-model="dataForm.lastName" placeholder="First Name" clearable></el-input>
         </el-form-item>
         <el-form-item>
           <el-input  v-model="dataForm.studentId" placeholder="Student ID" clearable></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click="getDataList()">search</el-button>
+          <el-button @click="getDataList()">Search</el-button>
         </el-form-item>
         <el-upload
           :show-file-list="false"
@@ -21,7 +21,7 @@
           :disabled="importDisabled"
           style="display: inline-flex;margin-right: 10px;"
           :action="importUrl">
-          <el-button :disabled="importDisabled" type="success">import</el-button>
+          <el-button :disabled="importDisabled" type="success">Upload</el-button>
         </el-upload>
       </el-form>
     </div>
@@ -29,7 +29,7 @@
         <el-table-column fixed prop="lastName" label="First Name" header-align="center" align="center" show-overflow-tooltip></el-table-column>
         <el-table-column prop="firstName" label="Last Name" header-align="center" align="center" show-overflow-tooltip></el-table-column>
         <el-table-column prop="studentId" label="Student ID" header-align="center" align="center"></el-table-column>
-        <el-table-column label="Detail" fixed="right" header-align="center" align="center" width="150">
+        <el-table-column label="Detail Grade" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button @click="seeHandle(scope.row.id)" type="text" size="small">Detail Grade</el-button>
           </template>
