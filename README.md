@@ -10,17 +10,19 @@ Mysql-8.0.18
 # Back-end technologies
 Base framework: Spring Boot 2.3.5  
 Persistence framework: Mybatis-plus 3.4.3  
-mysql.version 8.0.18  
-Caching framework: redis         
+Mysql 8.0.18  
+Caching framework: Redis         
 Others: fastjson, lombok (simplified code) ,oracle 11.2.0.3, sqlserver 4.0 etc  
 # Front-end technologies
 Vue   
 UI Framework:Element  
 # Build Setup
 Open IDEA   
-import back-end file and run application  
+import studentgradeprocess-backend file and run application  
 Open WebStorm   
-import web file   
+import studentgradeprocess-web file   
 npm install (install dependencies)  
 npm run dev (serve with hot reload at localhost:8080)  
+
+
 
