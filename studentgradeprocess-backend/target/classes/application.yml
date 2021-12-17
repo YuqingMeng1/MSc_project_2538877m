@@ -32,7 +32,7 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
   typeAliasesPackage: com.mengyuqing.modules.entity
   global-config:
-    #database configure
+    #database
     db-config:
       id-type: AUTO
     banner: false
