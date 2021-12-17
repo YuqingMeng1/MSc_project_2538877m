@@ -86,7 +86,6 @@
         </dependency>
     </dependencies>
 
-    <!-- 阿里云maven仓库 -->
     <repositories>
         <repository>
             <id>public</id>

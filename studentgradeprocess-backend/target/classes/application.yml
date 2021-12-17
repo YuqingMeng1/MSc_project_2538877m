@@ -30,10 +30,9 @@ spring:
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
-  #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.mengyuqing.modules.entity
   global-config:
-    #数据库相关配置
+    #database configure
     db-config:
       id-type: AUTO
     banner: false

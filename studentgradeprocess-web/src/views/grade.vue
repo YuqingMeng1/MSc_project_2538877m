@@ -60,7 +60,6 @@ export default {
         lastName: '',
         studentId: ''
       },
-      // 设置属性
       mixinViewModuleOptions: {
         createdIsNeed: true,
         getDataListURL: 'studentInfo/page',

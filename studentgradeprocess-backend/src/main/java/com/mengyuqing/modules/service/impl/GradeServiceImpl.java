@@ -142,7 +142,7 @@ public class GradeServiceImpl implements GradeService {
 
             String source = grades[gradeFoot];
 
-            // 判断是否可以转为数字 justify whether can be changed to number
+            // justify whether can be changed to number
             boolean type= StringUtils.isNumeric(source);
 
             if (!type) {
@@ -279,12 +279,12 @@ public class GradeServiceImpl implements GradeService {
         List<String> proportion = new ArrayList<>();
 
         if (!CollectionUtils.isEmpty(grade)) {
-            // 获取除学生信息外科目的信息 get the information besides subject title
+            //  get the information besides subject title
             String titleStrings = grade.get(0);
             String[] titles = titleStrings.split(",");
             this.getSubjectOtherInfo(titles, titleList);
 
-            // 获取除学生信息外科目占比的信息 get the information besides credit
+            // get the information besides credit
             String proportionStrings = grade.get(1);
             String[] proportions = proportionStrings.split(",");
             this.getSubjectOtherInfo(proportions, proportion);
