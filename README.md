@@ -1,5 +1,5 @@
 # MSc_project_2538877m
-This is a web-based student grade processing application
+This is a web-based student grade processing application，developed by Yuqing Meng.
 # Development environment
 Language:jdk 8.0  
 IDE(Java):IDEA  
