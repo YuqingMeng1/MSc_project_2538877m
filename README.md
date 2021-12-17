@@ -12,7 +12,7 @@ Base framework: Spring Boot 2.3.5
 Persistence framework: Mybatis-plus 3.4.3  
 mysql.version 8.0.18  
 Caching framework: redis         
-Others: fastjson, lombok (simplified code)  
+Others: fastjson, lombok (simplified code) ,oracle 11.2.0.3, sqlserver 4.0 etc  
 # Front-end technologies
 Vue   
 UI Framework:Element  
