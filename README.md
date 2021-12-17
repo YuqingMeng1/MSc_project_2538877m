@@ -13,7 +13,7 @@ Persistence framework: Mybatis-plus 3.4.3
 Caching framework: Redis         
 Others: fastjson, lombok (simplified code) ,oracle 11.2.0.3, sqlserver 4.0 etc  
 # Front-end technologies
-Vue   
+Vue.js
 UI Framework:Element  
 # Build Setup
 Open IDEA   
