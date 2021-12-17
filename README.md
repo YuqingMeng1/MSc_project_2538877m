@@ -10,7 +10,6 @@ Mysql-8.0.18
 # Back-end technologies
 Base framework: Spring Boot 2.3.5  
 Persistence framework: Mybatis-plus 3.4.3  
-Mysql 8.0.18  
 Caching framework: Redis         
 Others: fastjson, lombok (simplified code) ,oracle 11.2.0.3, sqlserver 4.0 etc  
 # Front-end technologies
